@@ -1,20 +1,14 @@
 set(TARGET mcp)
 
-add_library(${TARGET} STATIC
-    ../include/mcp_client.h
-    mcp_message.cpp
-    ../include/mcp_message.h
-    mcp_resource.cpp
-    ../include/mcp_resource.h
-    mcp_server.cpp
-    ../include/mcp_server.h
-    mcp_tool.cpp
-    ../include/mcp_tool.h
-    mcp_stdio_client.cpp
-    ../include/mcp_stdio_client.h
-    mcp_sse_client.cpp
-    ../include/mcp_sse_client.h
-)
+aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR} SRC_DIR)
+
+if (BUILD_SHARED_LIBS)
+    add_library(${TARGET} SHARED ${SRC_DIR})
+else()
+    add_library(${TARGET} STATIC ${SRC_DIR})
+endif()
+
+target_include_directories(${TARGET} PUBLIC ../include)
 
 target_link_libraries(${TARGET} PUBLIC ${CMAKE_THREAD_LIBS_INIT})
 

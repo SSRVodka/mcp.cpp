@@ -10,7 +10,7 @@ if (NOT XCODE AND NOT MSVC AND NOT CMAKE_BUILD_TYPE)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
 
-option(BUILD_SHARED_LIBS "build shared libraries" ${BUILD_SHARED_LIBS_DEFAULT})
+option(BUILD_SHARED_LIBS "build shared libraries" OFF)
 
 if (WIN32)
     add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
@@ -45,8 +45,11 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/common)
 # Add MCP library
 add_subdirectory(src)
 
-# Add examples
-add_subdirectory(examples)
+option(MCP_BUILD_EXAMPLES "Build the examples" OFF)
+if (MCP_BUILD_EXAMPLES)
+    # Add examples
+    add_subdirectory(examples)
+endif()
 
 # Add test directory
 option(MCP_BUILD_TESTS "Build the tests" OFF)
