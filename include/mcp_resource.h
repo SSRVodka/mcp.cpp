@@ -10,7 +10,7 @@
 #define MCP_RESOURCE_H
 
 #include "mcp_message.h"
-#include "base64.hpp"
+#include "../common/base64.hpp"
 #include <string>
 #include <vector>
 #include <memory>

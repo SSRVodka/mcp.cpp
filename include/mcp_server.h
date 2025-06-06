@@ -16,7 +16,7 @@
 #include "mcp_logger.h"
 
 // Include the HTTP library
-#include "httplib.h"
+#include "../common/httplib.h"
 
 #include <string>
 #include <map>
