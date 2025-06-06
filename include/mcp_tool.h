@@ -21,6 +21,7 @@ namespace mcp {
 
 // MCP Tool definition
 struct tool {
+    std::string type;
     std::string name;
     std::string description;
     json parameters_schema;
@@ -28,6 +29,7 @@ struct tool {
     // Convert to JSON for API documentation
     json to_json() const {
         return {
+            {"type", type},
             {"name", name},
             {"description", description},
             {"inputSchema", parameters_schema} // You may need `parameters` instead of `inputSchema` for OAI format
@@ -49,6 +51,13 @@ public:
      * @param name The name of the tool
      */
     explicit tool_builder(const std::string& name);
+
+    /**
+     * @brief Set the tool type
+     * @param type The type name (commonly 'function')
+     * @return Reference to this builder
+     */
+    tool_builder& with_type(const std::string &type);
     
     /**
      * @brief Set the tool description
@@ -123,6 +132,7 @@ public:
     tool build() const;
     
 private:
+    std::string type_;
     std::string name_;
     std::string description_;
     json parameters_;
