@@ -144,11 +144,11 @@ std::vector<tool> stdio_client::get_tools() {
     
     for (const auto& tool_json : tools_json) {
         tool t;
-        if (tool_json.contains("type")) {
-            t.type = tool_json["type"];
-        } else {
+        if (!tool_json.contains("type") || tool_json["type"].empty()) {
             // default tool type: function
             t.type = "function";
+        } else {
+            t.type = tool_json["type"];
         }
         t.name = tool_json["name"];
         t.description = tool_json["description"];
