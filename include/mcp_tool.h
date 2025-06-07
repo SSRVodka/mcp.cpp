@@ -30,12 +30,9 @@ struct tool {
         json schema = parameters_schema.is_null() ? json::object() : parameters_schema;
 
         return json{
-            {"type", "function"},
-            {"function", {
-                {"name", name},
-                {"description", description},
-                {"inputSchema", schema}  // You may need `parameters` instead of `inputSchema` for OAI format
-            }}
+            {"name", name},
+            {"description", description},
+            {"inputSchema", schema}  // You may need `parameters` instead of `inputSchema` for OAI format
         };
     }
 };
