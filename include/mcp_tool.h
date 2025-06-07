@@ -27,10 +27,15 @@ struct tool {
     
     // Convert to JSON for API documentation
     json to_json() const {
-        return {
-            {"name", name},
-            {"description", description},
-            {"inputSchema", parameters_schema} // You may need `parameters` instead of `inputSchema` for OAI format
+        json schema = parameters_schema.is_null() ? json::object() : parameters_schema;
+
+        return json{
+            {"type", "function"},
+            {"function", {
+                {"name", name},
+                {"description", description},
+                {"inputSchema", schema}  // You may need `parameters` instead of `inputSchema` for OAI format
+            }}
         };
     }
 };
