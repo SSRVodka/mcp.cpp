@@ -28,12 +28,9 @@ struct tool {
     // Convert to JSON for API documentation
     json to_json() const {
         return {
-            {"type", "function"},
-            {"function", {
-                {"name", name},
-                {"description", description},
-                {"inputSchema", parameters_schema} // You may need `parameters` instead of `inputSchema` for OAI format
-            }}
+            {"name", name},
+            {"description", description},
+            {"inputSchema", parameters_schema} // You may need `parameters` instead of `inputSchema` for OAI format
         };
     }
 };
