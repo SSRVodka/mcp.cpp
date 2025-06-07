@@ -17,11 +17,6 @@ tool_builder::tool_builder(const std::string& name)
     : name_(name) {
 }
 
-tool_builder& tool_builder::with_type(const std::string &type) {
-    type_ = type;
-    return *this;
-}
-
 tool_builder& tool_builder::with_description(const std::string& description) {
     description_ = description;
     return *this;
@@ -105,7 +100,6 @@ tool_builder& tool_builder::with_object_param(const std::string& name,
 
 tool tool_builder::build() const {
     tool t;
-    t.type = type_;
     t.name = name_;
     t.description = description_;
     
